@@ -8,4 +8,7 @@ gsutil mb gs://$GCLOUD_BUCKET
 echo "Installing Go deps"
 go get -u cloud.google.com/go/firestore
 
+echo "Seeding Pin data"
+go run seed_pins.go
+
 
