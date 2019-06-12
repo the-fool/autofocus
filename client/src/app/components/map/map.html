@@ -1,5 +1,14 @@
 <div id="outer">
   <div id="inner">
-    <svg></svg>
+    <svg>
+        <g id="pins">
+            <circle *ngFor="let p of postcards | async"
+                [attr.cx]="p.x"
+                [attr.cy]="p.y"
+                r="20"
+            >
+            </circle>
+        </g>
+    </svg>
   </div>
 </div>

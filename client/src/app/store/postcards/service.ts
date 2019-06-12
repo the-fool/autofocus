@@ -4,20 +4,20 @@ import { Postcard } from './models';
 
 const DUMMY: Postcard[] = [
     {
-        x: 10,
-        y: 34,
+        x: 0.5,
+        y: 0.6,
         img: 'wut',
         comment: ''
     },
     {
-        x: 100,
-        y: 34,
+        x: 0.8,
+        y: 0.4,
         img: 'wut',
         comment: ''
     },
     {
-        x: 20,
-        y: 134,
+        x: 0.2,
+        y: 0.2,
         img: 'wut',
         comment: ''
     },
