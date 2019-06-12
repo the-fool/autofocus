@@ -2,6 +2,8 @@ export GCLOUD_BUCKET=$DEVSHELL_PROJECT_ID-media
 export GCLOUD_PROJECT=$DEVSHELL_PROJECT_ID
 export GCLOUD_REGION=us-central
 export GCLOUD_ESP_NAME=autofocus-api
+export GCLOUD_PROJECT_NUMBER=$(gcloud projects list --filter="$GCLOUD_PROJECT" --format="value(PROJECT_NUMBER)")
+
 
 echo "Creating App Engine app"
 gcloud app create --region "us-central"
@@ -27,3 +29,11 @@ gcloud beta run deploy $GCLOUD_ESP_NAME \
 # envsubst < openapi-functions.yaml
 
 gcloud endpoints services deploy openapi-functions.yaml --project $GCLOUD_PROJECT
+
+echo "Configuring ESP"
+gcloud beta run configurations update \
+    --service $GCLOUD_ESP_NAME
+    --set-env-vars ENDPOINTS_SERVICE_NAME=autofocus-api-vteoiajvqq-uc.a.run.app
+    --project $GCLOUD_PROJECT
+
+
