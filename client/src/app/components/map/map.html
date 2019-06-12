@@ -6,9 +6,12 @@
                 [attr.cx]="p.x"
                 [attr.cy]="p.y"
                 r="20"
+                (click)="select(p)"
             >
             </circle>
         </g>
     </svg>
+
+    <postcard [postcard]="undefined"></postcard>
   </div>
 </div>

@@ -8,18 +8,21 @@ import {
   createFeatureSelector
 } from '@ngrx/store'
 import * as fromPostcards from './postcards/reducer'
+import * as fromMapPage from './map-page/reducer'
 import { environment } from '../../environments/environment'
 import { PostcardEffects } from './postcards/effects'
 
 export interface State {
-  postcards: fromPostcards.State
+  postcards: fromPostcards.State,
+  mapPage: fromMapPage.State
 }
 
 export const REDUCERS = new InjectionToken<ActionReducerMap<State, Action>>(
   'Root Reducer Token',
   {
     factory: () => ({
-      postcards: fromPostcards.reducer
+      postcards: fromPostcards.reducer,
+      mapPage: fromMapPage.reducer
     })
   }
 )
@@ -53,11 +56,22 @@ const selectPostcards = createFeatureSelector<State, fromPostcards.State>(
   'postcards'
 )
 
+const selectMapPage = createFeatureSelector<State, fromMapPage.State>(
+  'mapPage'
+)
+
 export const selectors = {
   postcards: {
     collection: createSelector(
       selectPostcards,
       fromPostcards.selectors.collection
     ),
+  },
+
+  mapPage: {
+      chosenPostcard: createSelector(
+          selectMapPage,
+          fromMapPage.selectors.selectedPostcard
+      )
   }
 }
