@@ -14,18 +14,17 @@ paths:
     get:
       summary: Return pins
       operationId: pins
-    x-google-backend:
-      address: https://us-central-autofocus.cloudfunctions.net/pinsGET
-    
-    responses:
-      '200':
-        description: Successfully returns list of pins
-        schema:
-          type: array
-          items:
-            type: object
-            properties:
-              x:
-                type: number
-              y:
-                type: number
+      x-google-backend:
+        address: https://us-central-autofocus.cloudfunctions.net/pinsGET
+      responses:
+        '200':
+          description: Successfully returns list of pins
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                x:
+                  type: number
+                y:
+                  type: number
