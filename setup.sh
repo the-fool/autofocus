@@ -1,5 +1,7 @@
 export GCLOUD_BUCKET=$DEVSHELL_PROJECT_ID-media
 export GCLOUD_PROJECT=$DEVSHELL_PROJECT_ID
+export GCLOUD_REGION=us-central
+export GCLOUD_ESP_NAME=autofocus-api
 
 echo "Creating App Engine app"
 gcloud app create --region "us-central"
@@ -13,4 +15,15 @@ go get -u cloud.google.com/go/firestore
 echo "Seeding Pin data"
 go run seed_pins.go
 
+echo "Creating ESP for Endpoints"
+gcloud config set run/region $GCLOUD_REGION
+gcloud beta run deploy $GCLOUD_ESP_NAME \
+    --image="gcr.io/endpoints-release/endpoints-runtime-serverless" \
+    --allow-unauthenticated \
+    --project=$GCLOUD_PROJECT
 
+# TODO: use env variables
+# GCLOUD_ESP_HOSTNAME=$(gcloud beta run services describe autofocus-api | grep hostname | awk '{print $2}' | sed -e "s/^https:\/\///")
+# envsubst < openapi-functions.yaml
+
+gcloud endpoints services deploy openapi-functions.yaml --project $GCLOUD_PROJECT

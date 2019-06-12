@@ -1,0 +1,31 @@
+swagger: '2.0'
+info:
+  title: Autfocus Endpoints
+  version: 1.0.0
+
+host: autofocus-api-vteoiajvqq-uc.a.run.app
+schemes: 
+  - https
+produces:
+  - application/json
+
+paths:
+  /pins:
+    get:
+      summary: Return pins
+      operationId: pins
+    x-google-backend:
+      address: https://us-central-autofocus.cloudfunctions.net/pinsGET
+    
+    responses:
+      '200':
+        description: Successfully returns list of pins
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              x:
+                type: number
+              y:
+                type: number
