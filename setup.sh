@@ -52,7 +52,6 @@ echo "Deploying Cloud Functions"
 gcloud services enable cloudfunctions.googleapis.com
 
 echo "getPins"
-cd functions/getPins
 gcloud functions deploy getPins \
     --source functions/getPins \
     --runtime python37 \
