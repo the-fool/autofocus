@@ -1,12 +1,12 @@
 export GCLOUD_BUCKET=$DEVSHELL_PROJECT_ID-media
 export GCLOUD_PROJECT=$DEVSHELL_PROJECT_ID
-export GCLOUD_REGION=us-central
+export GCLOUD_REGION=us-central1
 export GCLOUD_ESP_NAME=autofocus-api
 export GCLOUD_PROJECT_NUMBER=$(gcloud projects list --filter="$GCLOUD_PROJECT" --format="value(PROJECT_NUMBER)")
 
 
 echo "Creating App Engine app"
-gcloud app create --region "us-central"
+gcloud app create --region $GCLOUD_REGION
 
 echo "Making bucket $GCLOUD_BUCKET"
 gsutil mb gs://$GCLOUD_BUCKET
@@ -22,13 +22,15 @@ gcloud config set run/region $GCLOUD_REGION
 gcloud beta run deploy $GCLOUD_ESP_NAME \
     --image="gcr.io/endpoints-release/endpoints-runtime-serverless" \
     --allow-unauthenticated \
-    --project=$GCLOUD_PROJECT
+    --project=$GCLOUD_PROJECT 
+
 
 # TODO: use env variables
 # GCLOUD_ESP_HOSTNAME=$(gcloud beta run services describe autofocus-api | grep hostname | awk '{print $2}' | sed -e "s/^https:\/\///")
 # envsubst < openapi-functions.yaml
 
-gcloud endpoints services deploy openapi-functions.yaml --project $GCLOUD_PROJECT
+gcloud endpoints services deploy openapi-functions.yaml \
+    --project $GCLOUD_PROJECT
 
 echo "Configuring ESP"
 gcloud beta run services update $GCLOUD_ESP_NAME \
@@ -44,3 +46,7 @@ gcloud functions deploy getPins \
     --runtime python37 \
     --trigger-http
 
+gcloud alpha functions add-iam-policy-binding getPins \
+    --member "serviceAccount:$GCLOUD_PROJECT_NUMBER-compute@developer.gserviceaccount.com" \
+    --role "roles/cloudfunctions.invoker" \
+    --project autofocus

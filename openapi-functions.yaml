@@ -15,7 +15,7 @@ paths:
       summary: Return pins
       operationId: pins
       x-google-backend:
-        address: https://us-central-autofocus.cloudfunctions.net/getPins
+        address: https://us-central1-autofocus.cloudfunctions.net/getPins
       responses:
         '200':
           description: Successfully returns list of pins
