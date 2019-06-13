@@ -52,12 +52,12 @@ echo "Deploying Cloud Functions"
 gcloud services enable cloudfunctions.googleapis.com
 
 echo "getPins"
-gcloud functions deploy getPins \
-    --source functions/getPins \
+gcloud functions deploy postcards \
+    --source functions/postcards \
     --runtime python37 \
     --trigger-http
 
-gcloud alpha functions add-iam-policy-binding getPins \
+gcloud alpha functions add-iam-policy-binding postcards \
     --member "serviceAccount:$GCLOUD_PROJECT_NUMBER-compute@developer.gserviceaccount.com" \
     --role "roles/cloudfunctions.invoker" \
     --project autofocus

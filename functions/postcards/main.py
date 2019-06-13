@@ -51,7 +51,7 @@ def fetchPostcards():
 
     return list(map(serialize, results))
 
-def postcardEndpoint(request):
+def postcards(request):
     if request.method == 'OPTIONS':
         # Allows GET requests from origin https://mydomain.com with
         # Authorization header
