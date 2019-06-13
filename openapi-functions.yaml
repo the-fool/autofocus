@@ -75,6 +75,8 @@ definitions:
   Postcard:
     type: object
     properties:
+      postcardId:
+        type: string
       x:
         type: number
       y:
@@ -83,3 +85,6 @@ definitions:
         type: string
       comment:
         type: string
+    required:
+      - postcardId
+      - img
