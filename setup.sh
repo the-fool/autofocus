@@ -34,4 +34,13 @@ echo "Configuring ESP"
 gcloud beta run services update $GCLOUD_ESP_NAME \
     --set-env-vars ENDPOINTS_SERVICE_NAME=autofocus-api-vteoiajvqq-uc.a.run.app
 
+echo "Deploying Cloud Functions"
+gcloud services enable cloudfunctions.googleapis.com
+
+echo "getPins"
+cd functions/getPins
+gcloud functions deploy getPins \
+    --source functions/getPins \
+    --runtime python37 \
+    --trigger-http
 
