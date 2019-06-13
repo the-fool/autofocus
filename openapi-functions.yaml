@@ -2,29 +2,73 @@ swagger: '2.0'
 info:
   title: Autfocus Endpoints
   version: 1.0.0
-
 host: autofocus-api-vteoiajvqq-uc.a.run.app
 schemes: 
   - https
 produces:
   - application/json
-
 paths:
-  /pins:
-    get:
-      summary: Return pins
-      operationId: pins
+  /postcards:
+    put:
+      summary: Replace postcard
+      operationId: postcards
       x-google-backend:
-        address: https://us-central1-autofocus.cloudfunctions.net/getPins
+        address: https://us-central1-autofocus.cloudfunctions.net/postcards
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: postcard
+          description: The new postcard
+          schema:
+            $ref: '#/definitions/Postcard'
       responses:
         '200':
-          description: Successfully returns list of pins
+          description: Successfully update postcard
+          schema:
+            $ref: '#/definitions/Postcard'
+  
+    post:
+      summary: Insert postcard
+      operationId: postcards
+      x-google-backend:
+        address: https://us-central1-autofocus.cloudfunctions.net/postcards
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: postcard
+          description: The new postcard
+          schema:
+            $ref: '#/definitions/Postcard'
+      responses:
+        '200':
+          description: Successfully created postcard
+          schema:
+            $ref: '#/definitions/Postcard' 
+    
+    get:
+      summary: Return postcards
+      operationId: postcards
+      x-google-backend:
+        address: https://us-central1-autofocus.cloudfunctions.net/postcards
+      responses:
+        '200':
+          description: Successfully returns list of postcards
           schema:
             type: array
             items:
-              type: object
-              properties:
-                x:
-                  type: number
-                y:
-                  type: number
+              $ref: '#/definitions/Postcard'
+
+definitions:
+  Postcard:
+    type: object
+    properties:
+      x:
+        type: number
+      y:
+        type: number
+      img:
+        type: string
+      comment:
+        type: string
