@@ -11,7 +11,7 @@ paths:
   /postcards:
     put:
       summary: Replace postcard
-      operationId: postcards
+      operationId: postcardsReplace
       x-google-backend:
         address: https://us-central1-autofocus.cloudfunctions.net/postcards
       consumes:
@@ -30,7 +30,7 @@ paths:
   
     post:
       summary: Insert postcard
-      operationId: postcards
+      operationId: postcardsInsert
       x-google-backend:
         address: https://us-central1-autofocus.cloudfunctions.net/postcards
       consumes:
@@ -49,7 +49,7 @@ paths:
     
     get:
       summary: Return postcards
-      operationId: postcards
+      operationId: postcardsList
       x-google-backend:
         address: https://us-central1-autofocus.cloudfunctions.net/postcards
       responses:
