@@ -21,20 +21,20 @@ def get_db():
 def serialize(postcard_tuple):
     return dict(zip(columns, postcard_tuple))
 
-def upsertPostcard(pin):
+def upsertPostcard(postcard):
     global database
     if not database:
         database = get_db()
 
     def perform_update(transaction):
-        values = [pin[k] for k in columns]
+        values = [postcard[k] for k in columns]
         transaction.insert_or_update(
             'Postcard',
             columns=columns,
             values=[values]
         )
-    res = database.run_in_transaction(perform_update)
-    return list(map(serialize, res))[0]
+    database.run_in_transaction(perform_update)
+    return postcard 
 
 
 def fetchPostcards():
