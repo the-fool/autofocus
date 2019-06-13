@@ -31,9 +31,7 @@ gcloud beta run deploy $GCLOUD_ESP_NAME \
 gcloud endpoints services deploy openapi-functions.yaml --project $GCLOUD_PROJECT
 
 echo "Configuring ESP"
-gcloud beta run configurations update \
-    --service $GCLOUD_ESP_NAME
+gcloud beta run services update $GCLOUD_ESP_NAME \
     --set-env-vars ENDPOINTS_SERVICE_NAME=autofocus-api-vteoiajvqq-uc.a.run.app
-    --project $GCLOUD_PROJECT
 
 
