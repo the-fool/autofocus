@@ -17,6 +17,7 @@ const width = 1200
 })
 export class MapComponent implements OnInit {
     postcards: Observable<Postcard[]>
+    chosenPostcard: Observable<Postcard>
 
     constructor(private store: Store<State>) { }
 
@@ -27,7 +28,11 @@ export class MapComponent implements OnInit {
             x: p.x * width,
             y: p.y * height
         }))))
+
+        this.chosenPostcard = this.store.select(selectors.mapPage.chosenPostcard)
+
         this.store.dispatch(FetchPostcards())
+
     }
 
     select(postcard: Postcard) {

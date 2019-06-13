@@ -1,6 +1,16 @@
 <div class="modal">
-  <div class="modal-body">
-      The modal
+  <div class="modal-background" (click)="close()"></div>
+  <div class="modal-body" *ngIf="postcard">
+    <div class="left">
+      <div class="image" [style.backgroundImage]="'url('+ postcard?.img + ')'"></div>
+    </div>
+    <div class="right">
+      <div class="title">
+        {{ postcard?.title }}
+      </div>
+      <div class="comment">
+        {{ postcard?.comment }}
+      </div>
+    </div>
   </div>
 </div>
-<div class="modal-background"></div>
