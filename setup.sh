@@ -19,9 +19,9 @@ gcloud spanner instances create autofocus-instance --config=regional-us-central1
 gcloud spanner databases create autofocus-database --instance autofocus-instance --ddl "CREATE TABLE Postcard ( postcardId STRING(100) NOT NULL, comment STRING(MAX), img STRING(MAX), x FLOAT64, y FLOAT64 ) PRIMARY KEY (postcardId);"
 
 gcloud spanner databases add-iam-policy-binding autofocus-database \
---instance=autofocus-instance \
---member "serviceAccount:service-$GCLOUD_PROJECT_NUMBER@gcf-admin-robot.iam.gserviceaccount.com" \
---role="roles/spanner.databaseAdmin"
+    --instance=autofocus-instance \
+    --member "serviceAccount:service-$GCLOUD_PROJECT_NUMBER@gcf-admin-robot.iam.gserviceaccount.com" \
+    --role="roles/spanner.databaseAdmin"
 
 echo "Installing Go deps"
 go get -u cloud.google.com/go/firestore
