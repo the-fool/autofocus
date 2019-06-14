@@ -7,8 +7,28 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-auth.js"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+
 </head>
 <body>
   <app-root></app-root>
+  <script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyAllNwfvn4wrP1o3dzYcYozH5OgXgTRzjI",
+    authDomain: "autofocus.firebaseapp.com",
+    databaseURL: "https://autofocus.firebaseio.com",
+    projectId: "autofocus",
+    storageBucket: "autofocus.appspot.com",
+    messagingSenderId: "308378325549",
+    appId: "1:308378325549:web:726f21110cee8440"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  </script>
 </body>
 </html>
