@@ -23,6 +23,10 @@ gcloud spanner databases add-iam-policy-binding autofocus-database \
     --member "serviceAccount:service-$GCLOUD_PROJECT_NUMBER@gcf-admin-robot.iam.gserviceaccount.com" \
     --role="roles/spanner.databaseAdmin"
 
+gcloud projects add-iam-policy-binding autofocus \
+    --member "serviceAccount:service-$GCLOUD_PROJECT_NUMBER@gcf-admin-robot.iam.gserviceaccount.com" \
+    --role="roles/storage.admin"
+
 echo "Installing Go deps"
 go get -u cloud.google.com/go/firestore
 

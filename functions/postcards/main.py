@@ -1,9 +1,8 @@
 import flask
 import requests
 from google.cloud import spanner
-from google.cloud.spanner import KeySet
 
-k = KeySet(all_=True)
+k = spanner.KeySet(all_=True)
 
 instance_id = 'autofocus-instance'
 database_id = 'autofocus-database'
