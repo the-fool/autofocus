@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
-  title: Autfocus Endpoints
-  version: 2.0.0
+  title: Autofocus Endpoints
+  version: 1.0.0
 host: $GCLOUD_ESP_HOSTNAME
 schemes: 
   - https
@@ -12,8 +12,8 @@ securityDefinitions:
     authorizationUrl: ""
     flow: "implicit"
     type: "oauth2"
-    x-google-audiences: "autofocus"
-    x-google-issuer: "https://securetoken.google.com/autofocus"
+    x-google-audiences: "$GCLOUD_PROJECT"
+    x-google-issuer: "https://securetoken.google.com/$GCLOUD_PROJECT"
     x-google-jwks_uri: "https://www.googleapis.com/service_accounts/v1/metadata/x509/securetoken@system.gserviceaccount.com"
 paths:
   /postcards:
@@ -23,7 +23,7 @@ paths:
       security:
         - firebase: []
       x-google-backend:
-        address: https://us-central1-autofocus.cloudfunctions.net/postcards
+        address: https://us-central1-$GCLOUD_PROJECT.cloudfunctions.net/postcards
       consumes:
         - application/json
       parameters:
@@ -44,7 +44,7 @@ paths:
       security:
         - firebase: []
       x-google-backend:
-        address: https://us-central1-autofocus.cloudfunctions.net/postcards
+        address: https://us-central1-$GCLOUD_PROJECT.cloudfunctions.net/postcards
       consumes:
         - application/json
       parameters:
@@ -63,7 +63,7 @@ paths:
       summary: Return postcards
       operationId: postcardsList
       x-google-backend:
-        address: https://us-central1-autofocus.cloudfunctions.net/postcards
+        address: https://us-central1-$GCLOUD_PROJECT.cloudfunctions.net/postcards
       responses:
         '200':
           description: Successfully returns list of postcards
