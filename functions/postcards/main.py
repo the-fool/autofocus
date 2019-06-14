@@ -11,6 +11,7 @@ database_id = 'autofocus-database'
 database = None
 
 columns = ['postcardId', 'comment', 'img', 'x', 'y']
+defaults = ['', '', '', 0, 0]
 
 def get_db():
     c = spanner.Client(project='autofocus')
@@ -27,7 +28,7 @@ def upsertPostcard(postcard):
         database = get_db()
 
     def perform_update(transaction):
-        values = [postcard[k] for k in columns]
+        values = [postcard.get(k, default) for k, default in zip(columns, defaults)]
         transaction.insert_or_update(
             'Postcard',
             columns=columns,
