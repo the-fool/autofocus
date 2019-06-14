@@ -76,8 +76,8 @@ gcloud beta run deploy $GCLOUD_ESP_NAME \
     --project=$GCLOUD_PROJECT 
 
 export GCLOUD_ESP_HOSTNAME=$(gcloud beta run services describe $GCLOUD_ESP_NAME | grep hostname | awk '{print $2}' | sed -e "s/^https:\/\///")
-tmp_file=$(mktemp)
-cat openapi-functions.yaml | envsubst > $tmp_file
+export tmp_file=$(mktemp).yml
+cat openapi-functions.yaml | envsubst '$GCLOUD_PROJECT,$GCLOUD_ESP_HOSTNAME' > $tmp_file
 
 gcloud endpoints services deploy $tmp_file \
     --project $GCLOUD_PROJECT
