@@ -48,7 +48,7 @@ echo "postcards"
 gcloud functions deploy postcards \
     --source functions/postcards \
     --runtime python37 \
-    --set-env-vars GCLOUD_BUCKET_MEDIA=$GCLOUD_BUCKET_MEDIA,GCLOUD_PROJECT=$GCLOUD_PROJECT \
+    --set-env-vars GCLOUD_BUCKET_MEDIA=$GCLOUD_BUCKET_MEDIA,GCLOUD_PROJECT_NAME=$GCLOUD_PROJECT \
     --trigger-http
 
 gcloud alpha functions add-iam-policy-binding postcards \
@@ -60,7 +60,7 @@ echo "images"
 gcloud functions deploy images \
     --source functions/images \
     --runtime python37 \
-    --set-env-vars GCLOUD_BUCKET_MEDIA=$GCLOUD_BUCKET_MEDIA,GCLOUD_PROJECT=$GCLOUD_PROJECT \
+    --set-env-vars GCLOUD_BUCKET_MEDIA=$GCLOUD_BUCKET_MEDIA,GCLOUD_PROJECT_NAME=$GCLOUD_PROJECT \
     --trigger-http
 
 gcloud alpha functions add-iam-policy-binding images \
@@ -81,6 +81,7 @@ cat openapi-functions.yaml | envsubst > $tmp_file
 
 gcloud endpoints services deploy $tmp_file \
     --project $GCLOUD_PROJECT
+rm $tmp_file
 
 echo "Configuring ESP"
 gcloud beta run services update $GCLOUD_ESP_NAME \

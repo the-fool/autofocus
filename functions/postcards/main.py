@@ -14,7 +14,7 @@ columns = ['postcardId', 'comment', 'img', 'x', 'y']
 defaults = ['', '', '', 0, 0]
 
 def get_db():
-    c = spanner.Client(project=os.environ['GCLOUD_PROJECT'])
+    c = spanner.Client(project=os.environ['GCLOUD_PROJECT_NAME'])
     i = c.instance(instance_id)
     d = i.database(database_id)
     return d
