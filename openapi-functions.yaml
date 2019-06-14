@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   title: Autfocus Endpoints
   version: 2.0.0
-host: autofocus-api-vteoiajvqq-uc.a.run.app
+host: $GCLOUD_ESP_HOSTNAME
 schemes: 
   - https
 produces:

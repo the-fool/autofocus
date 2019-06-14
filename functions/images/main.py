@@ -17,7 +17,7 @@ def images(request):
 
     # upload file
     client = storage.Client()
-    bucket = client.get_bucket('autofocus-media')
+    bucket = client.get_bucket(os.environ['GCLOUD_BUCKET_MEDIA'])
     blob = bucket.blob(filename)
     blob.cache_control = 'public, max-age=31622400'
     blob.upload_from_filename(temp_path)

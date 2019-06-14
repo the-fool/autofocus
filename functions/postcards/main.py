@@ -1,5 +1,6 @@
 import flask
 import requests
+import os
 from google.cloud import spanner
 
 k = spanner.KeySet(all_=True)
@@ -13,7 +14,7 @@ columns = ['postcardId', 'comment', 'img', 'x', 'y']
 defaults = ['', '', '', 0, 0]
 
 def get_db():
-    c = spanner.Client(project='autofocus')
+    c = spanner.Client(project=os.environ['GCLOUD_PROJECT'])
     i = c.instance(instance_id)
     d = i.database(database_id)
     return d
@@ -53,11 +54,9 @@ def fetchPostcards():
 
 def postcards(request):
     if request.method == 'OPTIONS':
-        # Allows GET requests from origin https://mydomain.com with
-        # Authorization header
         headers = {
-            'Access-Control-Allow-Origin': 'https://mydomain.com',
-            'Access-Control-Allow-Methods': 'GET',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET,POST,PUT',
             'Access-Control-Allow-Headers': 'Authorization',
             'Access-Control-Max-Age': '3600',
             'Access-Control-Allow-Credentials': 'true'
