@@ -1,7 +1,6 @@
 import os
 from werkzeug.utils import secure_filename
 import tempfile
-import uuid
 from google.cloud import storage
 
 def images(request):
@@ -10,9 +9,6 @@ def images(request):
 
     # process name
     filename = secure_filename(file.filename)
-    name, ext = os.path.splitext(filename)
-    guid = uuid.uuid4().hex
-    filename = f'{name}-{guid}.{ext}'
 
     # save file
     temp_dir = tempfile.TemporaryDirectory()
@@ -23,6 +19,7 @@ def images(request):
     client = storage.Client()
     bucket = client.get_bucket('autofocus-media')
     blob = bucket.blob(filename)
+    blob.cache_control = 'public, max-age=31622400'
     blob.upload_from_filename(temp_path)
 
     return filename

@@ -11,6 +11,12 @@ gcloud app create --region $GCLOUD_REGION
 echo "Making bucket $GCLOUD_BUCKET"
 gsutil mb gs://$GCLOUD_BUCKET
 
+echo "Setting global read permissions on bucket"
+gsutil acl ch -u AllUsers:R gs://autofocus-media
+
+echo "Creating backend bucket for CDN"
+# todo
+
 echo "Creating Spanner"
 gcloud services enable spanner.googleapis.com
 

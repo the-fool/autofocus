@@ -7,7 +7,7 @@ const DUMMY: Postcard[] = [
         title: 'Lake of Diana',
         x: 0.5,
         y: 0.6,
-        img: '/assets/diana.jpg',
+        img: 'https://storage.cloud.google.com/autofocus-media/bill.jpg',
         comment: 'It lies in a small crater-like hollow on the mountainside'
     },
     {
