@@ -8,6 +8,10 @@ const routes: Routes = [
     component: MapComponent
   },
   {
+    path: 'admin',
+    loadChildren: './admin/module.ts#AdminModule'
+  },
+  {
     path: '**',
     redirectTo: 'map'
   }
