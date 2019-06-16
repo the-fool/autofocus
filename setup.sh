@@ -3,6 +3,13 @@ export GCLOUD_REGION=us-central1
 export GCLOUD_ESP_NAME=autofocus-api
 export GCLOUD_PROJECT_NUMBER=$(gcloud projects list --filter="$GCLOUD_PROJECT" --format="value(PROJECT_NUMBER)")
 export GCLOUD_BUCKET_MEDIA=autofocus_media_$GCLOUD_PROJECT_NUMBER
+export GCLOUD_ESP_HOSTNAME=$(gcloud beta run services describe $GCLOUD_ESP_NAME | grep hostname | awk '{print $2}' | sed -e "s/^https:\/\///")
+
+# this value is retrieved in the cloud console > apis & services > credentials
+export GLCOUD_OAUTH_CLIENT_ID="775685815708-i4i8nfq327btbf6mh6rno48n0d25s6ap.apps.googleusercontent.com"
+# openapi config
+export tmp_file=$(mktemp).yml
+cat openapi-functions.yaml | envsubst '$GCLOUD_PROJECT,$GCLOUD_ESP_HOSTNAME' > $tmp_file
 
 echo "Enabling Services"
 gcloud services enable spanner.googleapis.com
@@ -74,10 +81,6 @@ gcloud beta run deploy $GCLOUD_ESP_NAME \
     --image="gcr.io/endpoints-release/endpoints-runtime-serverless:1" \
     --allow-unauthenticated \
     --project=$GCLOUD_PROJECT 
-
-export GCLOUD_ESP_HOSTNAME=$(gcloud beta run services describe $GCLOUD_ESP_NAME | grep hostname | awk '{print $2}' | sed -e "s/^https:\/\///")
-export tmp_file=$(mktemp).yml
-cat openapi-functions.yaml | envsubst '$GCLOUD_PROJECT,$GCLOUD_ESP_HOSTNAME' > $tmp_file
 
 gcloud endpoints services deploy $tmp_file \
     --project $GCLOUD_PROJECT
