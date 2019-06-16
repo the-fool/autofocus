@@ -6,10 +6,10 @@ export GCLOUD_BUCKET_MEDIA=autofocus_media_$GCLOUD_PROJECT_NUMBER
 export GCLOUD_ESP_HOSTNAME=$(gcloud beta run services describe $GCLOUD_ESP_NAME | grep hostname | awk '{print $2}' | sed -e "s/^https:\/\///")
 
 # this value is retrieved in the cloud console > apis & services > credentials
-export GLCOUD_OAUTH_CLIENT_ID="775685815708-i4i8nfq327btbf6mh6rno48n0d25s6ap.apps.googleusercontent.com"
+export GCLOUD_OAUTH_CLIENT_ID="775685815708-i4i8nfq327btbf6mh6rno48n0d25s6ap.apps.googleusercontent.com"
 # openapi config
 export tmp_file=$(mktemp).yml
-cat openapi-functions.yaml | envsubst '$GCLOUD_PROJECT,$GCLOUD_ESP_HOSTNAME' > $tmp_file
+cat openapi-functions.yaml | envsubst '$GCLOUD_PROJECT,$GCLOUD_ESP_HOSTNAME,$GCLOUD_OAUTH_CLIENT_ID' > $tmp_file
 
 echo "Enabling Services"
 gcloud services enable spanner.googleapis.com
