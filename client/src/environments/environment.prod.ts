@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  postcardApiUrl: 'https://autofocus-api-paamgrkmhq-uc.a.run.app/postcards',
   firebaseConfig: {
     apiKey: 'AIzaSyAIDvpLZ5Ag6pbIV9PgO_WMXg2N1UWWT50',
     authDomain: 'jmkac-autofocus.firebaseapp.com',

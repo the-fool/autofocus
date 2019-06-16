@@ -13,6 +13,8 @@ import { mergeMap } from 'rxjs/operators';
 export class TokenInterceptor implements HttpInterceptor {
     constructor(public afAuth: AngularFireAuth) { }
     intercept = (request: HttpRequest<any>, next: HttpHandler) =>
+        !this.afAuth.auth.currentUser ?
+        next.handle(request) :
         from(this.afAuth.auth.currentUser.getIdToken()).pipe(
             mergeMap(token => {
                 request = request.clone({

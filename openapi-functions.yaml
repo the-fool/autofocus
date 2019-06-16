@@ -2,7 +2,10 @@ swagger: '2.0'
 info:
   title: Autofocus Endpoints
   version: 1.0.0
-host: $GCLOUD_ESP_HOSTNAME
+host: $GCLOUD_ESP_HOSTNAME,
+x-google-endpoints: 
+    name: $GCLOUD_ESP_HOSTNAME
+    allowCors: true
 schemes: 
   - https
 produces:

@@ -1,6 +1,8 @@
-import { of } from 'rxjs';
-import { Injectable } from '@angular/core';
-import { Postcard } from './models';
+import { of } from 'rxjs'
+import { Injectable } from '@angular/core'
+import { Postcard } from './models'
+import { HttpClient } from '@angular/common/http'
+import { environment } from 'src/environments/environment'
 
 const DUMMY: Postcard[] = [
     {
@@ -30,7 +32,8 @@ const DUMMY: Postcard[] = [
     providedIn: 'root'
 })
 export class PostcardService {
+    constructor(private http: HttpClient) {}
     getAll() {
-        return of(DUMMY)
+        return this.http.get(environment.postcardApiUrl)
     }
 }
