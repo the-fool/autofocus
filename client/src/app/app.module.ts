@@ -8,10 +8,15 @@ import { StoreModule } from '@ngrx/store';
 import { REDUCERS, metaReducers, EFFECTS } from './store';
 import { EffectsModule } from '@ngrx/effects';
 import { COMPONENTS } from './components';
+import { LoginComponent } from './auth/login';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment'
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
     ...COMPONENTS
   ],
   imports: [
@@ -26,7 +31,9 @@ import { COMPONENTS } from './components';
         strictActionSerializability: true
       }
     }),
-    EffectsModule.forRoot(EFFECTS)
+    EffectsModule.forRoot(EFFECTS),
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'jmkac-autofocus'),
+    AngularFireAuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
