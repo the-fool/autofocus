@@ -2,13 +2,14 @@
   <div id="inner">
     <svg>
         <g id="pins">
-            <circle *ngFor="let p of postcards | async"
-                [attr.cx]="p.x"
-                [attr.cy]="p.y"
-                r="20"
-                (click)="select(p)"
-            >
-            </circle>
+            <use 
+              *ngFor="let p of postcards | async"
+              xlink:href="assets/defs.svg#pin" 
+              [attr.x]="p.x" 
+              [attr.y]="p.y"
+              (click)="select(p)"
+              >
+            </use>
         </g>
     </svg>
 
