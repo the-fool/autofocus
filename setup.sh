@@ -16,10 +16,7 @@ gcloud services enable spanner.googleapis.com
 gcloud services enable cloudfunctions.googleapis.com
 gcloud services enable storage-component.googleapis.com
 gcloud services enable run.googleapis.com
-
-
-echo "Creating App Engine app"
-gcloud app create --region $GCLOUD_REGION
+gcloud services enable cloudbuild.googleapis.com
 
 echo "Making bucket $GCLOUD_BUCKET_MEDIA"
 gsutil mb gs://$GCLOUD_BUCKET_MEDIA
