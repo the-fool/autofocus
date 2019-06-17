@@ -15,22 +15,19 @@
   align-items: center;
   /* enables scrolling for tall modals */
   overflow: auto;
+  opacity: 0;
+  transition: opacity 0.3s;
 
   &.shown {
     display: flex;
-
-    .modal-body {
-      opacity: 1;
-    }
+    opacity: 1;
   }
 
   .modal-body {
-    opacity: 0;
-    transition: opacity 0.5s;
     overflow: hidden;
     border: 2px solid var(--theme);
     border-radius: 1rem;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.4), 0 3px 6px rgba(0,0,0,0.5);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3), 0 3px 6px rgba(0,0,0,0.4);
     background: #fff;
     z-index: 1;
     /* margin exposes part of the modal background */
@@ -57,9 +54,15 @@
       flex: 50;
 
       .title {
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: GothamBold;
+        text-transform: uppercase;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--theme);
         margin-bottom: 1rem;
-        font-size: 1rem;
+        font-size: 2rem;
       }
     }
   }

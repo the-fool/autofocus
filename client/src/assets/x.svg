@@ -1,14 +1,37 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 151 124" style="enable-background:new 0 0 151 124;" xml:space="preserve">
-<style type="text/css">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   height="100"
+   width="100"
+   xml:space="preserve"
+   viewBox="0 0 100 100"
+   y="0px"
+   x="0px"
+   id="Layer_1"
+   version="1.1"><metadata
+   id="metadata3779"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+   id="defs3777">
+	
+	
+</defs>
+<style
+   id="style3766"
+   type="text/css">
 	.st0{fill:#71C391;}
 </style>
-<g>
-	<path class="st0" d="M62.1,79.4l-4.4-4.4c-0.6-0.6-0.6-1.5,0-2.1l28.7-28.7c0.6-0.6,1.5-0.6,2.1,0l4.4,4.4c0.6,0.6,0.6,1.5,0,2.1
-		L64.2,79.4C63.6,79.9,62.7,79.9,62.1,79.4z"/>
-	<path class="st0" d="M92.9,74.9l-4.4,4.4c-0.6,0.6-1.5,0.6-2.1,0L57.6,50.7c-0.6-0.6-0.6-1.5,0-2.1l4.4-4.4c0.6-0.6,1.5-0.6,2.1,0
-		l28.7,28.7C93.4,73.4,93.4,74.3,92.9,74.9z"/>
-</g>
+<path
+   class="st0"
+   d="M 13.674029,98.959058 1.5193329,86.745318 c -1.65745851,-1.665511 -1.65745851,-4.163776 0,-5.829286 L 80.8011,1.2491344 c 1.657458,-1.66551004 4.143646,-1.66551004 5.801105,0 L 98.756901,13.462875 c 1.657459,1.66551 1.657459,4.163775 0,5.829285 L 19.475134,98.959058 c -1.657459,1.387922 -4.143647,1.387922 -5.801105,0 z"
+   id="path3768"
+   style="fill:#71c391;stroke-width:2.76913238" /><path
+   class="st0"
+   d="M 98.756901,86.467732 86.602205,98.681473 c -1.657459,1.665507 -4.143647,1.665507 -5.801105,0 L 1.2430898,19.29216 c -1.6574585,-1.66551 -1.6574585,-4.163775 0,-5.829285 L 13.397786,1.2491344 c 1.657458,-1.66551004 4.143646,-1.66551004 5.801105,0 L 98.480658,80.916032 c 1.657462,1.387925 1.657462,3.88619 0.276243,5.5517 z"
+   id="path3770"
+   style="fill:#71c391;stroke-width:2.76913238" />
 </svg>
