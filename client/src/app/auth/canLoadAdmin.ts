@@ -10,11 +10,15 @@ export class CanLoadAdminService implements CanLoad {
     constructor(private af: AngularFireAuth, private router: Router) { }
 
     async canLoad() {
-        const user = await this.af.auth.currentUser;
-        if (user) {
-            return true
-        }
-        this.router.navigate(['login'])
-        return false
+        return new Promise<boolean>((res, rej) => {
+            this.af.auth.onAuthStateChanged(user => {
+                if (user) {
+                    res(!!user)
+                } else {
+                    this.router.navigate(['login'])
+                    res(false)
+                }
+            })
+        })
     }
 }

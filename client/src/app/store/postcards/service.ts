@@ -34,6 +34,6 @@ const DUMMY: Postcard[] = [
 export class PostcardService {
     constructor(private http: HttpClient) {}
     getAll() {
-        return this.http.get(environment.postcardApiUrl)
+        return this.http.get<Postcard[]>(environment.postcardApiUrl)
     }
 }

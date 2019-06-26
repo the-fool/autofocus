@@ -15,8 +15,11 @@ export class LoginComponent {
     constructor(public afAuth: AngularFireAuth, public router: Router) { }
 
     async login() {
-        const res = await this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
-        console.log(res.credential.toJSON());
-        this.router.navigate(['admin'])
+        await this.afAuth.auth.setPersistence(auth.Auth.Persistence.LOCAL).then(async () => {
+
+            const creds = await this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
+            console.log(creds.credential.toJSON());
+            this.router.navigate(['admin'])
+        })
     }
 }
