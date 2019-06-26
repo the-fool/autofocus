@@ -1,0 +1,94 @@
+swagger: '2.0'
+info:
+  title: Autofocus Endpoints
+  version: 1.0.0
+host: $GCLOUD_ESP_HOSTNAME
+x-google-endpoints: 
+    - name: $GCLOUD_ESP_HOSTNAME
+      allowCors: true
+schemes: 
+  - https
+produces:
+  - application/json
+securityDefinitions:
+  firebase:
+    authorizationUrl: ""
+    flow: "implicit"
+    type: "oauth2"
+    x-google-audiences: "$GCLOUD_OAUTH_CLIENT_ID"
+    x-google-issuer: "https://accounts.google.com"
+    x-google-jwks_uri: "https://www.googleapis.com/oauth2/v3/certs"
+paths:
+  /postcards:
+    put:
+      summary: Replace postcard
+      operationId: postcardsReplace
+      security:
+        - firebase: []
+      x-google-backend:
+        address: $GCLOUD_BACKEND/postcards
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: postcard
+          description: The new postcard
+          schema:
+            $ref: '#/definitions/Postcard'
+      responses:
+        '200':
+          description: Successfully update postcard
+          schema:
+            $ref: '#/definitions/Postcard'
+  
+    post:
+      summary: Insert postcard
+      operationId: postcardsInsert
+      security:
+        - firebase: []
+      x-google-backend:
+        address: $GCLOUD_BACKEND/postcards
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: postcard
+          description: The new postcard
+          schema:
+            $ref: '#/definitions/Postcard'
+      responses:
+        '200':
+          description: Successfully created postcard
+          schema:
+            $ref: '#/definitions/Postcard' 
+    
+    get:
+      summary: Return postcards
+      operationId: postcardsList
+      x-google-backend:
+        address: $GCLOUD_BACKEND/postcards
+      responses:
+        '200':
+          description: Successfully returns list of postcards
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Postcard'
+
+definitions:
+  Postcard:
+    type: object
+    properties:
+      postcardId:
+        type: string
+      x:
+        type: number
+      y:
+        type: number
+      img:
+        type: string
+      comment:
+        type: string
+    required:
+      - postcardId
+      - img

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { map, switchMapTo } from 'rxjs/operators';
-import * as actions from './actions';
 import { PostcardService } from './service';
+import * as actions from './actions';
 
 @Injectable()
 export class PostcardEffects {
@@ -12,11 +12,7 @@ export class PostcardEffects {
       switchMapTo(
         this.svc.getAll()
           .pipe(
-            map(postcards => actions.FetchPostcardsSucceeded({ postcards }))
-          )
-      )
-    )
-  )
+            map(postcards => actions.FetchPostcardsSucceeded({ postcards }))))))
 
   constructor(private actions$: Actions, private svc: PostcardService) {}
 }

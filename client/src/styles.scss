@@ -1,3 +1,20 @@
+@import 'vars';
+
+:root {
+  --theme: #71c391;
+  --white: #ffffff;
+}
+
+@font-face {
+  font-family: GothamBold;
+  src: url(assets/fonts/GothamHTF-Bold.otf)
+}
+
+@font-face {
+  font-family: Gotham;
+  src: url(assets/fonts/GothamHTF-Medium.otf)
+}
+
 /* You can add global styles to this file, and also import other style files */
 html,
 body {
@@ -5,8 +22,18 @@ body {
   padding: 0;
   border: 0;
   box-sizing: border-box;
+  font-family: Gotham, Arial, Helvetica, sans-serif;
 
   * {
     box-sizing: border-box;
+  }
+}
+
+svg {
+  .theme {
+    fill: var(--theme);
+  }
+  .white {
+    fill:var(--white);
   }
 }

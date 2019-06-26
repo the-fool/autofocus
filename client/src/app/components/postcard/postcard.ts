@@ -15,9 +15,9 @@ export class PostcardComponent implements OnChanges {
     }
     ngOnChanges() {
         if (this.postcard) {
-            this.el.nativeElement.style.display = 'block'
+            // this.el.nativeElement.style.display = 'block'
         } else {
-            this.el.nativeElement.style.display = 'none'
+            // this.el.nativeElement.style.display = 'none'
         }
     }
 
