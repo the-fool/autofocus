@@ -1,5 +1,5 @@
 provider "google" {
-    project = "autofocus"
+    project = "truble-autofocus-installation"
     region = "us-central1"
     zone = "us-central1-c"
 }
@@ -12,7 +12,7 @@ resource "google_endpoints_service" "openapi_service" {
 */
 
 resource "google_storage_bucket" "autofocus-store" {
-    name = "autofocus-store-bucket"
+    name = "truble-autofocus-installation"
 }
 
 resource "google_storage_bucket_acl" "autofocus-store-acl" {
