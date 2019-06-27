@@ -14,10 +14,9 @@ CORS(app)
 db = firestore.Client()
 col = db.collection(u'postcards')
 
-@app.route('/')
+@app.route('/health')
 def hello_world():
-    target = os.environ.get('TARGET', 'World')
-    return 'Hello {}!\n'.format(target)
+    return 'healthy'
 
 @app.route('/postcards', methods=['GET', 'POST'])
 def postcards():
