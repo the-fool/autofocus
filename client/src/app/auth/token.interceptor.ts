@@ -11,7 +11,7 @@ import { mergeMap } from 'rxjs/operators';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-    constructor(public afAuth: AngularFireAuth) { }
+    constructor(public afAuth: AngularFireAuth) {}
     intercept = (request: HttpRequest<any>, next: HttpHandler) =>
         !this.afAuth.auth.currentUser ?
         next.handle(request) :

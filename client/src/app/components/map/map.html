@@ -1,16 +1,15 @@
 <div id="outer">
   <div id="inner">
     <svg>
-        <g id="pins">
-            <use 
+            <use
+              class="map-pin" 
               *ngFor="let p of postcards | async"
               xlink:href="assets/defs.svg#pin" 
-              [attr.x]="p.x" 
-              [attr.y]="p.y"
+              [attr.x]="p.x * 100 + '%'" 
+              [attr.y]="p.y * 100 + '%'"
               (click)="select(p)"
               >
             </use>
-        </g>
     </svg>
 
     <postcard [postcard]="chosenPostcard | async"></postcard>

@@ -7,9 +7,7 @@ import { selectors } from 'src/app/store'
 import { FetchPostcards } from 'src/app/store/postcards/actions'
 import { map } from 'rxjs/operators';
 import { PinClicked } from 'src/app/store/map-page/actions';
-
-const height = 800
-const width = 1200
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
     templateUrl: 'map.html',
@@ -18,21 +16,14 @@ const width = 1200
 export class MapComponent implements OnInit {
     postcards: Observable<Postcard[]>
     chosenPostcard: Observable<Postcard>
-
-    constructor(private store: Store<State>) { }
+    user: Observable<firebase.User>
+    constructor(private store: Store<State>, private af: AngularFireAuth) { }
 
     ngOnInit() {
+        this.user = this.af.authState
         this.postcards = this.store.select(selectors.postcards.collection)
-        .pipe(map(ps => ps.map(p => ({
-            ...p,
-            x: p.x * width,
-            y: p.y * height
-        }))))
-
         this.chosenPostcard = this.store.select(selectors.mapPage.chosenPostcard)
-
         this.store.dispatch(FetchPostcards())
-
     }
 
     select(postcard: Postcard) {
