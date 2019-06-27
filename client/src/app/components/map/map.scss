@@ -1,4 +1,7 @@
 $pin-fill: #761d1d;
+$full-height: 1080px;
+$full-width: 1920px;
+$image-margin: 20px;
 
 #outer {
   height: 100vh;
@@ -14,8 +17,8 @@ $pin-fill: #761d1d;
 #inner {
   background-image: url('/assets/map.jpg');
   background-size: cover;
-  height: 800px;
-  width: 1200px;
+  height: calc(#{$full-height} - 2 * #{$image-margin});
+  width: calc(#{$full-width} - 2 * #{$image-margin});
 
   svg {
     width: 100%;
