@@ -1,7 +1,7 @@
 import os
 import tempfile
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, abort
 from werkzeug.utils import secure_filename
 from flask_cors import CORS
 from google.cloud import firestore
@@ -28,6 +28,16 @@ def postcards():
 
     if request.method == 'POST':
         f = request.files['file']  
+        try:
+            _id = request.form['id']
+        except:
+            abort(400)
+       
+        title = request.form.get('title', '')
+        comment = request.form.get('comment', '')
+        x = request.form.get('x', 0.5)
+        y = request.form.get('y', 0.5)
+
         # process name
         filename = secure_filename(f.filename)
 
@@ -42,8 +52,19 @@ def postcards():
         blob = bucket.blob(filename)
         blob.cache_control = 'public, max-age=31622400'
         blob.upload_from_filename(temp_path)
+        
+        doc = col.document(_id)
+        postcard = {
+            'id': _id,
+            'title': title,
+            'comment': comment,
+            'img': filename,
+            'x': x,
+            'y': y
+        }
+        doc.set(postcard)
 
-        return filename
+        return jsonify(postcard)
 
 
 if __name__ == "__main__":
