@@ -74,6 +74,14 @@
         color: var(--theme);
         margin-bottom: 1rem;
         font-size: 2rem;
+
+        #icon-container {
+          display: flex;
+          img {
+            margin-left: 1rem;
+            height: 2rem;
+          }
+        }
       }
     }
   }

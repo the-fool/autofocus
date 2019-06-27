@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/auth/auth.service'
 })
 export class PostcardComponent  {
     @Input() postcard: Postcard;
+    @Input() authorized: boolean;
 
     constructor(private el: ElementRef, private store: Store<State>, private auth: AuthService) {}
 

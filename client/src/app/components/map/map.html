@@ -12,6 +12,13 @@
             </use>
     </svg>
 
-    <postcard [postcard]="chosenPostcard | async"></postcard>
+    <postcard 
+      [postcard]="chosenPostcard | async"
+      [authorized]="authorized | async"
+    ></postcard>
+
+    <div *ngIf="authorized | async" id="upload">
+      <img src="assets/baseline-cloud_upload-24px.svg">
+    </div>
   </div>
 </div>

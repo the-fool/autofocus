@@ -37,3 +37,13 @@ $image-margin: 20px;
     }
   }
 }
+
+#upload {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+
+  img {
+    height: 100px;
+  }
+}
