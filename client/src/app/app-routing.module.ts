@@ -18,7 +18,7 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: () => import('./admin/module').then(mod => mod.AdminModule),
     canLoad: [
-      CanLoadAdminService
+       CanLoadAdminService
     ]
   },
   {

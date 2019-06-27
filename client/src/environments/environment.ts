@@ -6,13 +6,13 @@ export const environment = {
   production: false,
   postcardApiUrl: 'https://postcard-server-mgdxodm2wa-uc.a.run.app',
   firebaseConfig: {
-    apiKey: 'AIzaSyAIDvpLZ5Ag6pbIV9PgO_WMXg2N1UWWT50',
-    authDomain: 'jmkac-autofocus.firebaseapp.com',
-    databaseURL: 'https://jmkac-autofocus.firebaseio.com',
-    projectId: 'jmkac-autofocus',
-    storageBucket: 'jmkac-autofocus.appspot.com',
-    messagingSenderId: '775685815708',
-    appId: '1:775685815708:web:4c5a772cc9f2ccd0'
+    apiKey: 'AIzaSyDAd1rsXFdC3ErLnIcG5A7mK5oCav7SU70',
+    authDomain: 'truble-autofocus-installation.firebaseapp.com',
+    databaseURL: 'https://truble-autofocus-installation.firebaseio.com',
+    projectId: 'truble-autofocus-installation',
+    storageBucket: 'truble-autofocus-installation.appspot.com',
+    messagingSenderId: '311816577439',
+    appId: '1:311816577439:web:c7465b1a2e4d96b5'
   }
 };
 

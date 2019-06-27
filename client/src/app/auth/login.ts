@@ -16,7 +16,6 @@ export class LoginComponent {
 
     async login() {
         await this.afAuth.auth.setPersistence(auth.Auth.Persistence.LOCAL).then(async () => {
-
             const creds = await this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
             console.log(creds.credential.toJSON());
             this.router.navigate(['admin'])
