@@ -12,7 +12,7 @@ steps:
   - run
   - deploy
   - postcard-server
-  - --image gcr.io/$PROJECT_ID/postcard-server:latest
-  - --region us-central1
-  - --platform managed
+  - --image=gcr.io/$PROJECT_ID/postcard-server:latest
+  - --region=us-central1
+  - --platform=managed
     
