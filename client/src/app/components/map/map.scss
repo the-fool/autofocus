@@ -1,7 +1,10 @@
 $pin-fill: #761d1d;
+
+// hard-coded for the sake of the 
 $full-height: 1080px;
 $full-width: 1920px;
-$image-margin: 20px;
+
+$image-margin: 30px;
 
 #outer {
   height: 100vh;
@@ -17,16 +20,13 @@ $image-margin: 20px;
 #inner {
   background-image: url('/assets/map.jpg');
   background-size: cover;
-  height: calc(#{$full-height} - 2 * #{$image-margin});
-  width: calc(#{$full-width} - 2 * #{$image-margin});
+  height: calc(100vh - $image-margin);
+  width: 1200px;
 
   svg {
     width: 100%;
     height: 100%;
 
-    .map-pin {
-      transform: translate(-76px, -104px);
-    }
     circle {
       fill: $pin-fill;
 
@@ -35,15 +35,5 @@ $image-margin: 20px;
         stroke-width: 2px;
       }
     }
-  }
-}
-
-#upload {
-  position: fixed;
-  right: 50px;
-  bottom: 50px;
-
-  img {
-    height: 100px;
   }
 }
