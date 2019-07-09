@@ -15,7 +15,7 @@ db = firestore.Client()
 col = db.collection(u'postcards')
 
 @app.route('/health')
-def hello_world():
+def health():
     return 'healthy'
 
 @app.route('/postcards', methods=['GET', 'POST'])
