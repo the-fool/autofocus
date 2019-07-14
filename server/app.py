@@ -55,6 +55,9 @@ def postcards():
             blob = bucket.blob(filename)
             blob.cache_control = 'public, max-age=31622400'
             blob.upload_from_filename(temp_path)
+            
+            filename = blob.public_url
+
         else:
             filename = doc.get().to_dict()['img']
 

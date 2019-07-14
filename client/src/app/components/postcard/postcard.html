@@ -22,7 +22,7 @@
           *ngIf="editing"
           type="file"
           accept="image/*"
-          [(ngModel)]="newImage"
+          (change)="handleFileChange($event.target.files)"
         />
       </div>
     </div>

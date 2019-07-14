@@ -4,19 +4,21 @@ import { Store } from '@ngrx/store'
 import { State } from 'src/app/store'
 import { PostcardClosed } from 'src/app/store/map-page/actions'
 import { AuthService } from 'src/app/auth/auth.service'
+import { UpdatePostcard, UpdatePostcardSuccess } from 'src/app/store/postcards/actions';
+import { PostcardService } from 'src/app/store/postcards/service';
 
 @Component({
     selector: 'af-postcard',
     templateUrl: 'postcard.html',
     styleUrls: ['postcard.scss']
 })
-export class PostcardComponent  {
-    @Input() postcard: Postcard = {x: 0, y: 0, comment: '', title: '', img: ''}
+export class PostcardComponent {
+    @Input() postcard: Postcard = { x: 0, y: 0, comment: '', title: '', img: '', id: '' }
     @Input() authorized: boolean
     editing = false
     newImage: File
 
-    constructor(private el: ElementRef, private store: Store<State>, private auth: AuthService) {}
+    constructor(private el: ElementRef, private store: Store<State>, private auth: AuthService, private pSvc: PostcardService) { }
 
     close() {
         this.store.dispatch(PostcardClosed())
@@ -26,9 +28,23 @@ export class PostcardComponent  {
         this.editing = true
     }
 
+    handleFileChange(fs: FileList) {
+        this.newImage = fs.item(0)
+    }
+
     doSave() {
         console.log(this.postcard)
         console.log(this.newImage)
+        const payload = {
+            postcard: this.postcard,
+            newImage: this.newImage
+        }
+        const msg = UpdatePostcard(payload)
+        this.pSvc.update(payload.postcard, payload.newImage).subscribe(postcard => {
+            this.store.dispatch(UpdatePostcardSuccess({ postcard }))
+        })
+
+        // this.store.dispatch(msg)
         this.editing = false
     }
 }

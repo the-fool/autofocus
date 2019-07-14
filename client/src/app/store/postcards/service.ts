@@ -24,5 +24,7 @@ export class PostcardService {
         fd.append('y', `${postcard.y}`)
         fd.append('comment', postcard.comment)
         fd.append('title', postcard.title)
+
+        return this.http.post<Postcard>(url, fd)
     }
 }
