@@ -15,13 +15,6 @@ const routes: Routes = [
     component: MapComponent
   },
   {
-    path: 'admin',
-    loadChildren: () => import('./admin/module').then(mod => mod.AdminModule),
-    canLoad: [
-       CanLoadAdminService
-    ]
-  },
-  {
     path: 'login',
     component: LoginComponent
   },

@@ -1,24 +1,25 @@
 <div id="outer">
   <div id="inner">
+    <div id="bkgrnd"></div>
+
     <svg>
-            <use
-              class="map-pin" 
-              *ngFor="let p of postcards | async"
-              xlink:href="assets/defs.svg#pin" 
-              [attr.x]="p.x * 100 + '%'" 
-              [attr.y]="p.y * 100 + '%'"
-              (click)="select(p)"
-              >
-            </use>
+      <use
+        xlink:href="assets/defs.svg#pin"
+        (click)="select(p)"
+        class="map-pin"
+        *ngFor="let p of postcards | async"
+        [attr.x]="p.x * 100 + '%'"
+        [attr.y]="p.y * 100 + '%'"
+      ></use>
     </svg>
 
-    <postcard 
+    <af-postcard
       [postcard]="chosenPostcard | async"
       [authorized]="authorized | async"
-    ></postcard>
+    ></af-postcard>
 
     <div *ngIf="authorized | async" id="upload">
-      <img src="assets/baseline-cloud_upload-24px.svg">
+      <img src="assets/baseline-cloud_upload-24px.svg" />
     </div>
   </div>
 </div>

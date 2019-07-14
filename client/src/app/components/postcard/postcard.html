@@ -1,23 +1,54 @@
-<div class="modal" [ngClass]="{shown: postcard}">
-  <div class="modal-background" (click)="close()" ></div>
-  <div class="modal-body">
+<div class="modal" [ngClass]="{ shown: postcard }">
+  <div class="modal-background" (click)="close()"></div>
+  <div class="modal-body" *ngIf="postcard">
+    <div *ngIf="authorized" id="toolbar">
+      <img src="assets/baseline-delete-24px.svg" />
+      <img src="assets/baseline-place-24px.svg" />
+      <img
+        src="assets/baseline-edit-24px.svg"
+        (click)="doEdit()"
+        [ngClass]="{ disabled: editing }"
+      />
+      <img
+        src="assets/baseline-save-24px.svg"
+        (click)="doSave()"
+        [ngClass]="{ disabled: !editing }"
+      />
+    </div>
+
     <div class="left">
-      <div class="image" [style.backgroundImage]="'url('+ postcard?.img + ')'"></div>
+      <div class="image" [style.backgroundImage]="'url(' + postcard?.img + ')'">
+        <input
+          *ngIf="editing"
+          type="file"
+          accept="image/*"
+          [(ngModel)]="newImage"
+        />
+      </div>
     </div>
     <div class="right">
       <div class="title">
-        <div>
+        <div *ngIf="!editing; else titleInput">
           {{ postcard?.title }}
         </div>
+        <ng-template #titleInput>
+          <input id="title-input" type="text" [(ngModel)]="postcard.title" />
+        </ng-template>
+
         <div id="icon-container">
-          <img *ngIf="authorized" src="assets/baseline-delete-24px.svg">
-          <img src="assets/baseline-clear-24px.svg" (click)="close()"> 
+          <img src="assets/baseline-clear-24px.svg" (click)="close()" />
         </div>
       </div>
-              
-      <div class="comment">
-        {{ postcard?.comment }}
-      </div>
+
+      <div
+        class="comment"
+        *ngIf="!editing; else commentInput"
+        [innerHtml]="postcard?.comment"
+      ></div>
+
+      <ng-template #commentInput>
+        <textarea [(ngModel)]="postcard.comment"></textarea>
+      </ng-template>
     </div>
   </div>
 </div>

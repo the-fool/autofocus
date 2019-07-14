@@ -30,6 +30,10 @@ body {
   }
 }
 
+body {
+  background: black;
+}
+
 svg {
   .theme {
     fill: var(--theme);

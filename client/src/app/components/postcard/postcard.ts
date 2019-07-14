@@ -6,17 +6,29 @@ import { PostcardClosed } from 'src/app/store/map-page/actions'
 import { AuthService } from 'src/app/auth/auth.service'
 
 @Component({
-    selector: 'postcard',
+    selector: 'af-postcard',
     templateUrl: 'postcard.html',
     styleUrls: ['postcard.scss']
 })
 export class PostcardComponent  {
-    @Input() postcard: Postcard;
-    @Input() authorized: boolean;
+    @Input() postcard: Postcard = {x: 0, y: 0, comment: '', title: '', img: ''}
+    @Input() authorized: boolean
+    editing = false
+    newImage: File
 
     constructor(private el: ElementRef, private store: Store<State>, private auth: AuthService) {}
 
     close() {
         this.store.dispatch(PostcardClosed())
+    }
+
+    doEdit() {
+        this.editing = true
+    }
+
+    doSave() {
+        console.log(this.postcard)
+        console.log(this.newImage)
+        this.editing = false
     }
 }

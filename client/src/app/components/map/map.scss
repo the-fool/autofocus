@@ -14,16 +14,37 @@ $image-margin: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: black;
 }
 
 #inner {
-  background-image: url('/assets/map.jpg');
-  background-size: cover;
-  height: calc(100vh - $image-margin);
-  width: 1200px;
+  height: $full-height;
+  width: $full-width;
+  position: relative;
+
+  #bkgrnd {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: url('/assets/map.png');
+    background-position: center;
+    background-size: cover;
+    transform: scale(1);
+  }
+
+  #upload {
+    right: 0;
+    position: absolute;
+    bottom: 0;
+    height: 96px;
+    width: 96px;
+
+    img {
+      height: 100%;
+    }
+  }
 
   svg {
+    position: absolute;
     width: 100%;
     height: 100%;
 
