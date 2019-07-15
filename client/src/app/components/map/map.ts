@@ -6,7 +6,7 @@ import { Postcard } from '../../store/postcards/models'
 import { selectors } from 'src/app/store'
 import { FetchPostcards } from 'src/app/store/postcards/actions'
 import { map, tap, switchMap } from 'rxjs/operators';
-import { PinClicked } from 'src/app/store/map-page/actions';
+import { PinClicked, PinLocationSet } from 'src/app/store/map-page/actions';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
@@ -37,5 +37,11 @@ export class MapComponent implements OnInit {
 
     select(postcard: Postcard) {
         this.store.dispatch(PinClicked({postcard}))
+    }
+
+    doPlacePin(e: MouseEvent) {
+        const x = e.clientX / 1920
+        const y = e.clientY / 1080
+        this.store.dispatch(PinLocationSet({x, y}))
     }
 }

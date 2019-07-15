@@ -11,6 +11,7 @@ import * as fromPostcards from './postcards/reducer'
 import * as fromMapPage from './map-page/reducer'
 import { environment } from '../../environments/environment'
 import { PostcardEffects } from './postcards/effects'
+import { MapPageEffects } from './map-page/effects';
 
 export interface State {
   postcards: fromPostcards.State,
@@ -27,7 +28,7 @@ export const REDUCERS = new InjectionToken<ActionReducerMap<State, Action>>(
   }
 )
 
-export const EFFECTS = [PostcardEffects]
+export const EFFECTS = [PostcardEffects, MapPageEffects]
 
 // console.log all actions
 export function logger(reducer: ActionReducer<State>): ActionReducer<State> {

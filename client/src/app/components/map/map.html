@@ -1,26 +1,36 @@
 <div id="outer">
   <div id="inner">
-    <div id="place-pin-instructions" *ngIf="placingPin | async">
-      Click where to focus postcard
+    <div id="place-pin-container" *ngIf="placingPin | async" (click)="doPlacePin($event)">
+
+      <div id="place-pin-instructions">
+        Click where to focus postcard
+      </div>
     </div>
 
     <div id="bkgrnd"></div>
 
-    <svg [ngClass]="{muted: placingPin | async}">
-      <use
-        xlink:href="assets/defs.svg#pin"
-        (click)="select(p)"
+    <svg [ngClass]="{muted: placingPin | async}" id="svg-container">
+      <!-- <use xlink:href="assets/defs.svg#pin" (click)="select(p)" class="map-pin" *ngFor="let p of postcards | async"
+        [attr.x]="p.x * 100 + '%'" [attr.y]="p.y * 100 + '%'"></use> -->
+
+
+      <svg 
         class="map-pin"
+        xmlns="http://www.w3.org/2000/svg" 
+        width="64" 
+        height="64" 
+        viewBox="0 0 24 24"
+        (click)="select(p)"
         *ngFor="let p of postcards | async"
-        [attr.x]="p.x * 100 + '%'"
+        [attr.x]="p.x * 100 + '%'" 
         [attr.y]="p.y * 100 + '%'"
-      ></use>
+        >
+        <path
+          d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+      </svg>
     </svg>
 
-    <af-postcard
-      [postcard]="chosenPostcard | async"
-      [authorized]="authorized | async"
-    ></af-postcard>
+    <af-postcard [postcard]="chosenPostcard | async" [authorized]="authorized | async"></af-postcard>
 
     <div *ngIf="authorized | async" id="upload">
       <img src="assets/baseline-cloud_upload-24px.svg" />

@@ -48,7 +48,7 @@ export class PostcardComponent {
 
     placePin() {
         const msg = PlacePinClicked({ postcard: this.postcard })
-
         this.store.dispatch(msg)
+        this.close();
     }
 }

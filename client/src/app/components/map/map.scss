@@ -31,18 +31,23 @@ $image-margin: 30px;
     transform: scale(1);
   }
 
-  #place-pin-instructions {
+  #place-pin-container {
     position: absolute;
-    color: #bfdecb;
-    right: 50%;
-    top: 50%;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: 10;
-    font-size: 5rem;
-    text-align: center;
-    transform: translateX(50%) translateY(-50%);
-    text-transform: uppercase;
-  }
 
+    #place-pin-instructions {
+      color: #bfdecb;
+      font-size: 5rem;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    
+  }
   #upload {
     right: 0;
     position: absolute;
@@ -55,17 +60,23 @@ $image-margin: 30px;
     }
   }
 
-  svg {
+  #svg-container {
     position: absolute;
     width: 100%;
     height: 100%;
+    &.muted {
+      opacity: 0.5;
+    }
 
-    circle {
-      fill: $pin-fill;
-
-      &:hover {
-        stroke: #eee;
-        stroke-width: 2px;
+    .map-pin {
+      overflow: visible;
+      path {
+        fill: var(--theme);
+        transform: translate(-50%, -100%);
+        &:hover {
+          stroke: #eee;
+          stroke-width: 1px;
+        }
       }
     }
   }
