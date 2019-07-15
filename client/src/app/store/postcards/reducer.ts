@@ -27,7 +27,7 @@ export const reducer = createReducer(
 
   on(actions.UpdatePostcardSuccess, (state, { postcard }) => ({
     ...state,
-    postcards: { ...state.postcards, [postcard.id]: postcard },
+    postcards: { ...state.postcards, [postcard.id]: postcard }, // TODO
     thinking: false
   })),
 
