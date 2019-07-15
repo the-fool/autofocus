@@ -16,6 +16,7 @@ export class PostcardComponent {
     @Input() postcard: Postcard = { x: 0, y: 0, comment: '', title: '', img: '', id: '' }
     @Input() authorized: boolean
     editing = false
+    thinking = false
     newImage: File
 
     constructor(private el: ElementRef, private store: Store<State>, private auth: AuthService, private pSvc: PostcardService) { }
@@ -39,12 +40,11 @@ export class PostcardComponent {
             postcard: this.postcard,
             newImage: this.newImage
         }
-        const msg = UpdatePostcard(payload)
+        this.thinking = true
         this.pSvc.update(payload.postcard, payload.newImage).subscribe(postcard => {
             this.store.dispatch(UpdatePostcardSuccess({ postcard }))
+            this.thinking = false
         })
-
-        // this.store.dispatch(msg)
         this.editing = false
     }
 }

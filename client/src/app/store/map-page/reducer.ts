@@ -1,4 +1,3 @@
-import { Postcard } from '../postcards/models'
 import { MapPage } from './models'
 import { createReducer, on } from '@ngrx/store'
 import * as actions from './actions'
@@ -14,7 +13,7 @@ export const reducer = createReducer(
 
   on(actions.PinClicked, (state, { postcard }) => ({
     ...state,
-    selectedPostcard: postcard
+    selectedPostcard: postcard.id
   })),
 
   on(actions.PostcardClosed, (state) => ({

@@ -4,11 +4,11 @@ import * as actions from './actions'
 
 export interface State {
   thinking: boolean
-  postcards: Postcard[]
+  postcards: {[key: string]: Postcard}
 }
 
 const initialState: State = {
-  postcards: [],
+  postcards: {},
   thinking: false
 }
 
@@ -27,7 +27,7 @@ export const reducer = createReducer(
 
   on(actions.UpdatePostcardSuccess, (state, { postcard }) => ({
     ...state,
-    postcards: { ...state.postcards, [postcard.id]: postcard }, // TODO
+    postcards: { ...state.postcards, [postcard.id]: postcard },
     thinking: false
   })),
 
@@ -38,5 +38,5 @@ export const reducer = createReducer(
 )
 
 export const selectors = {
-  collection: (s: State) => s.postcards,
+  collection: (s: State) => Object.values(s.postcards),
 }

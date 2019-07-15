@@ -21,7 +21,7 @@ export const FetchPostcards = createAction(
 
 export const FetchPostcardsSucceeded = createAction(
     '[Postcords] Fetch Succeeded',
-    props<{postcards: Postcard[]}>()
+    props<{postcards: {[key: string]: Postcard}}>()
 )
 
 export const FetchPostcardsFailed = createAction(

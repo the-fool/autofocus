@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { State } from 'src/app/store'
-import { Observable, of } from 'rxjs'
+import { Observable, of, combineLatest } from 'rxjs'
 import { Postcard } from '../../store/postcards/models'
 import { selectors } from 'src/app/store'
 import { FetchPostcards } from 'src/app/store/postcards/actions'
@@ -24,7 +24,10 @@ export class MapComponent implements OnInit {
             switchMap(u => u ? u.getIdToken() : of(false)),
             map(token => !!token))
         this.postcards = this.store.select(selectors.postcards.collection)
-        this.chosenPostcard = this.store.select(selectors.mapPage.chosenPostcard)
+        this.chosenPostcard = combineLatest(
+            this.store.select(selectors.mapPage.chosenPostcard),
+            this.postcards).pipe(map(([id, ps]) =>  ps.find(p => p.id === id)))
+
         this.store.dispatch(FetchPostcards())
     }
 

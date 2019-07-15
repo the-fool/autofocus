@@ -1,6 +1,6 @@
 import os
 import tempfile
-
+import uuid
 from flask import Flask, jsonify, request, abort
 from werkzeug.utils import secure_filename
 from flask_cors import CORS
@@ -42,7 +42,8 @@ def postcards():
 
         # process name
         if f:
-            filename = secure_filename(f.filename)
+            u = uuid.uuid4().hex
+            filename = u + '_' + secure_filename(f.filename)
 
             # save file
             temp_dir = tempfile.TemporaryDirectory()
