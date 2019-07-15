@@ -2,7 +2,7 @@ import { Component, Input, ElementRef } from '@angular/core'
 import { Postcard } from 'src/app/store/postcards/models'
 import { Store } from '@ngrx/store'
 import { State } from 'src/app/store'
-import { PostcardClosed } from 'src/app/store/map-page/actions'
+import { PostcardClosed, PlacePinClicked } from 'src/app/store/map-page/actions'
 import { AuthService } from 'src/app/auth/auth.service'
 import { UpdatePostcard, UpdatePostcardSuccess } from 'src/app/store/postcards/actions';
 import { PostcardService } from 'src/app/store/postcards/service';
@@ -34,8 +34,6 @@ export class PostcardComponent {
     }
 
     doSave() {
-        console.log(this.postcard)
-        console.log(this.newImage)
         const payload = {
             postcard: this.postcard,
             newImage: this.newImage
@@ -46,5 +44,11 @@ export class PostcardComponent {
             this.thinking = false
         })
         this.editing = false
+    }
+
+    placePin() {
+        const msg = PlacePinClicked({ postcard: this.postcard })
+
+        this.store.dispatch(msg)
     }
 }

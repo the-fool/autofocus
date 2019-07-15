@@ -5,7 +5,8 @@ import * as actions from './actions'
 export interface State extends MapPage {}
 
 const initialState: State = {
-  selectedPostcard: null
+  selectedPostcard: null,
+  situation: 'normal'
 }
 
 export const reducer = createReducer(
@@ -19,9 +20,20 @@ export const reducer = createReducer(
   on(actions.PostcardClosed, (state) => ({
     ...state,
     selectedPostcard: null
+  })),
+
+  on(actions.PlacePinClicked, state => ({
+    ...state,
+    situation: 'placing'
+  })),
+
+  on(actions.PinLocationSet, state => ({
+    ...state,
+    situation: 'normal'
   }))
 )
 
 export const selectors = {
     selectedPostcard: (s: State) => s.selectedPostcard,
+    situation: (s: State) => s.situation
 }

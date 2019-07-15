@@ -72,6 +72,11 @@ export const selectors = {
       chosenPostcard: createSelector(
           selectMapPage,
           fromMapPage.selectors.selectedPostcard
+      ),
+
+      situation: createSelector(
+        selectMapPage,
+        fromMapPage.selectors.situation
       )
   }
 }

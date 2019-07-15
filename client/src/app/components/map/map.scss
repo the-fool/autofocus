@@ -31,6 +31,18 @@ $image-margin: 30px;
     transform: scale(1);
   }
 
+  #place-pin-instructions {
+    position: absolute;
+    color: #bfdecb;
+    right: 50%;
+    top: 50%;
+    z-index: 10;
+    font-size: 5rem;
+    text-align: center;
+    transform: translateX(50%) translateY(-50%);
+    text-transform: uppercase;
+  }
+
   #upload {
     right: 0;
     position: absolute;

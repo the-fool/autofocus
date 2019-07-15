@@ -3,7 +3,7 @@ import { Postcard } from './models';
 
 export const UpdatePostcard = createAction(
     '[Postcards] Update Postcard',
-    props<{postcard: Postcard, newImage: File}>()
+    props<{postcard: Postcard, newImage?: File}>()
 )
 
 export const UpdatePostcardSuccess = createAction(

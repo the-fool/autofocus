@@ -3,12 +3,15 @@
   <div class="modal-body" *ngIf="postcard">
     <div *ngIf="authorized" id="toolbar">
       <img src="assets/baseline-delete-24px.svg" />
-      <img src="assets/baseline-place-24px.svg" />
-      <img
+      <img src="assets/baseline-place-24px.svg" (click)="placePin()"/>
+      <a>
+
+        <img
         src="assets/baseline-edit-24px.svg"
         (click)="doEdit()"
         [ngClass]="{ disabled: editing }"
-      />
+        />
+      </a>
       <img
         src="assets/baseline-save-24px.svg"
         (click)="doSave()"

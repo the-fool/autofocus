@@ -1,8 +1,12 @@
 <div id="outer">
   <div id="inner">
+    <div id="place-pin-instructions" *ngIf="placingPin | async">
+      Click where to focus postcard
+    </div>
+
     <div id="bkgrnd"></div>
 
-    <svg>
+    <svg [ngClass]="{muted: placingPin | async}">
       <use
         xlink:href="assets/defs.svg#pin"
         (click)="select(p)"

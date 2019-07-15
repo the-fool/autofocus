@@ -17,6 +17,8 @@ export class MapComponent implements OnInit {
     postcards: Observable<Postcard[]>
     chosenPostcard: Observable<Postcard>
     authorized: Observable<boolean>
+    placingPin: Observable<boolean>
+
     constructor(private store: Store<State>, private af: AngularFireAuth) { }
 
     ngOnInit() {
@@ -28,7 +30,9 @@ export class MapComponent implements OnInit {
             this.store.select(selectors.mapPage.chosenPostcard),
             this.postcards).pipe(map(([id, ps]) =>  ps.find(p => p.id === id)))
 
+        this.placingPin = this.store.select(selectors.mapPage.situation).pipe(map(s => s === 'placing'))
         this.store.dispatch(FetchPostcards())
+
     }
 
     select(postcard: Postcard) {
