@@ -4,6 +4,7 @@ import { map, switchMapTo, switchMap, catchError } from 'rxjs/operators';
 import { PostcardService } from './service';
 import * as actions from './actions';
 import { of } from 'rxjs';
+import { PinClicked } from '../map-page/actions';
 
 @Injectable()
 export class PostcardEffects {
@@ -13,7 +14,9 @@ export class PostcardEffects {
       ofType(actions.CreatePostcard),
       switchMapTo(
         this.svc.create().pipe(
-          map(postcard => actions.UpdatePostcardSuccess({ postcard }))))))
+          switchMap(postcard => [
+            actions.UpdatePostcardSuccess({ postcard }),
+            PinClicked({ postcard })])))))
 
   submitPin$ = createEffect(() =>
     this.actions$.pipe(

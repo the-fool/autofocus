@@ -23,6 +23,7 @@ export class PostcardComponent {
 
     close() {
         this.store.dispatch(PostcardClosed())
+        this.editing = false
     }
 
     doEdit() {
