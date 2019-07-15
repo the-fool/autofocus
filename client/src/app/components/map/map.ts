@@ -22,6 +22,7 @@ export class MapComponent implements OnInit {
     constructor(private store: Store<State>, private af: AngularFireAuth) { }
 
     ngOnInit() {
+        window['af'] = this.af
         this.authorized = this.af.authState.pipe(
             switchMap(u => u ? u.getIdToken() : of(false)),
             map(token => !!token))
@@ -49,7 +50,8 @@ export class MapComponent implements OnInit {
         this.store.dispatch(CreatePostcard())
     }
 
-    logout() {
-        this.af.auth.signOut();
+    doLogout() {
+        this.af.auth.signOut()
+        window.location.reload()
     }
 }

@@ -28,8 +28,8 @@ export class PostcardService {
             id,
             x: 0.5,
             y: 0.5,
-            title: '',
-            comment: '',
+            title: 'New Postcard',
+            comment: 'Insert didactics here',
             img: ''
         }
         return this.update(newPostcard, null)

@@ -25,7 +25,7 @@
 
     <div *ngIf="authorized | async" id="authorized-toolbar">
       <img src="assets/baseline-cloud_upload-24px.svg" (click)="doCreate()"/>
-      <img src="assets/baseline-eject-24px.svg" />
+      <img src="assets/baseline-eject-24px.svg" (click)="doLogout()" />
     </div>
   </div>
 </div>

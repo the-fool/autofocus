@@ -14,11 +14,12 @@ import { Router } from '@angular/router';
 export class LoginComponent {
     constructor(public afAuth: AngularFireAuth, public router: Router) { }
 
-    async login() {
-        await this.afAuth.auth.setPersistence(auth.Auth.Persistence.LOCAL).then(async () => {
-            const creds = await this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
-            console.log(creds.credential.toJSON());
-            this.router.navigate(['map'])
-        })
+    login() {
+        this.afAuth.auth.setPersistence(auth.Auth.Persistence.LOCAL)
+            .then(() => this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()))
+            .then(creds => {
+                console.log(creds)
+                this.router.navigate(['map'])
+            });
     }
 }
