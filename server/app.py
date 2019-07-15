@@ -65,7 +65,7 @@ def postcards():
             filename = blob.public_url
 
         else:
-            filename = doc.get().to_dict()['img']
+            filename = request.form.get('img', '')
 
         postcard = {
             'id': _id,

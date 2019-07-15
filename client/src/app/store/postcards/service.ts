@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http'
 import { environment } from 'src/environments/environment'
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { v4 as uuid } from 'uuid'
 
 const url = environment.postcardApiUrl + '/postcards'
 
@@ -21,6 +22,19 @@ export class PostcardService {
         return this.http.delete(url + `/${key}`)
     }
 
+    create() {
+        const id = uuid()
+        const newPostcard: Postcard = {
+            id,
+            x: 0.5,
+            y: 0.5,
+            title: '',
+            comment: '',
+            img: ''
+        }
+        return this.update(newPostcard, null)
+    }
+
     update(postcard: Postcard, newImage: File | null) {
         const fd = new FormData()
         if (newImage) {
@@ -31,6 +45,7 @@ export class PostcardService {
         fd.append('y', `${postcard.y}`)
         fd.append('comment', postcard.comment)
         fd.append('title', postcard.title)
+        fd.append('img', postcard.img)
 
         return this.http.post<Postcard>(url, fd)
     }

@@ -6,6 +6,10 @@ export const UpdatePostcard = createAction(
     props<{postcard: Postcard, newImage?: File}>()
 )
 
+export const CreatePostcard = createAction(
+    '[Postcards] Create Postcard'
+)
+
 export const UpdatePostcardSuccess = createAction(
     '[Postcards] Update Postcard Success',
     props<{postcard: Postcard}>()

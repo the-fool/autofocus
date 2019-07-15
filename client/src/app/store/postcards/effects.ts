@@ -7,6 +7,14 @@ import { of } from 'rxjs';
 
 @Injectable()
 export class PostcardEffects {
+
+  createPostcard$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.CreatePostcard),
+      switchMapTo(
+        this.svc.create().pipe(
+          map(postcard => actions.UpdatePostcardSuccess({ postcard }))))))
+
   submitPin$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.FetchPostcards),
