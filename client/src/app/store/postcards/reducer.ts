@@ -34,7 +34,15 @@ export const reducer = createReducer(
   on(actions.UpdatePostcardFail, state => ({
     ...state,
     thinking: false
-  }))
+  })),
+
+  on(actions.DeletPostcardClicked, (state, { key }) => {
+    const {[key]: deleted, ...remainingPostcards} = state.postcards
+    return {
+      ...state,
+      postcards: remainingPostcards
+    }
+  })
 )
 
 export const selectors = {

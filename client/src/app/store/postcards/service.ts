@@ -17,6 +17,10 @@ export class PostcardService {
             .pipe(map(xs => xs.reduce((ac, x) => ({...ac, [x.id]: x}), {})))
     }
 
+    delete(key: string) {
+        return this.http.delete(url + `/${key}`)
+    }
+
     update(postcard: Postcard, newImage: File | null) {
         const fd = new FormData()
         if (newImage) {

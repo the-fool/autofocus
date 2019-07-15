@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store'
 import { State } from 'src/app/store'
 import { PostcardClosed, PlacePinClicked } from 'src/app/store/map-page/actions'
 import { AuthService } from 'src/app/auth/auth.service'
-import { UpdatePostcard, UpdatePostcardSuccess } from 'src/app/store/postcards/actions';
+import { UpdatePostcard, UpdatePostcardSuccess, DeletPostcardClicked } from 'src/app/store/postcards/actions';
 import { PostcardService } from 'src/app/store/postcards/service';
 
 @Component({
@@ -44,6 +44,12 @@ export class PostcardComponent {
             this.thinking = false
         })
         this.editing = false
+    }
+
+    doDelete() {
+        const msg = DeletPostcardClicked({key: this.postcard.id})
+        this.store.dispatch(msg)
+        this.close()
     }
 
     placePin() {

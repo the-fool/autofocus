@@ -27,3 +27,17 @@ export const FetchPostcardsSucceeded = createAction(
 export const FetchPostcardsFailed = createAction(
     '[Session] Fetch Failed'
 )
+
+export const DeletPostcardClicked = createAction(
+    '[Postcards] Delete clicked',
+    props<{key: string}>()
+)
+
+export const DeletPostcardSuccess = createAction(
+    '[Postcards] Delete Success',
+    props<{key: string}>()
+)
+
+export const DeletePostcardFailure = createAction(
+    '[Postcards] Delete Failure'
+)

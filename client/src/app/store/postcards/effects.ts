@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
-import { map, switchMapTo, switchMap } from 'rxjs/operators';
+import { map, switchMapTo, switchMap, catchError } from 'rxjs/operators';
 import { PostcardService } from './service';
 import * as actions from './actions';
+import { of } from 'rxjs';
 
 @Injectable()
 export class PostcardEffects {
@@ -22,5 +23,13 @@ export class PostcardEffects {
           .pipe(
             map(postcard => actions.UpdatePostcardSuccess({ postcard }))))))
 
-  constructor(private actions$: Actions, private svc: PostcardService) {}
+  deletePostcard$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.DeletPostcardClicked),
+      switchMap(({ key }) =>
+        this.svc.delete(key).pipe(
+          map(() => actions.DeletPostcardSuccess({ key })),
+          catchError(er => of(actions.DeletePostcardFailure()))))))
+
+  constructor(private actions$: Actions, private svc: PostcardService) { }
 }
