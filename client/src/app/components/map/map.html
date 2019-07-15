@@ -14,17 +14,8 @@
         [attr.x]="p.x * 100 + '%'" [attr.y]="p.y * 100 + '%'"></use> -->
 
 
-      <svg 
-        class="map-pin"
-        xmlns="http://www.w3.org/2000/svg" 
-        width="64" 
-        height="64" 
-        viewBox="0 0 24 24"
-        (click)="select(p)"
-        *ngFor="let p of postcards | async"
-        [attr.x]="p.x * 100 + '%'" 
-        [attr.y]="p.y * 100 + '%'"
-        >
+      <svg class="map-pin" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24"
+        (click)="select(p)" *ngFor="let p of postcards | async" [attr.x]="p.x * 100 + '%'" [attr.y]="p.y * 100 + '%'">
         <path
           d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
       </svg>
@@ -32,8 +23,9 @@
 
     <af-postcard [postcard]="chosenPostcard | async" [authorized]="authorized | async"></af-postcard>
 
-    <div *ngIf="authorized | async" id="upload">
+    <div *ngIf="authorized | async" id="authorized-toolbar">
       <img src="assets/baseline-cloud_upload-24px.svg" />
+      <img src="assets/baseline-eject-24px.svg" />
     </div>
   </div>
 </div>

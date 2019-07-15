@@ -5,11 +5,11 @@ import { Router } from '@angular/router';
 
 @Component({
     template: `
-    <div>
-      <p>Please login.</p>
-      <button (click)="login()">Login with Google</button>
+    <div id="login">
+      <a href="#" (click)="login()">Click here to login</a>
     </div>
-    `
+    `,
+    styleUrls: ['style.scss']
 })
 export class LoginComponent {
     constructor(public afAuth: AngularFireAuth, public router: Router) { }

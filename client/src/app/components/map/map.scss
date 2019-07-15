@@ -48,16 +48,17 @@ $image-margin: 30px;
     }
     
   }
-  #upload {
-    right: 0;
-    position: absolute;
-    bottom: 0;
-    height: 96px;
-    width: 96px;
+  #authorized-toolbar {
 
-    img {
-      height: 100%;
-    }
+      right: 0;
+      position: absolute;
+      bottom: 0;
+      height: 96px;
+      
+      img {
+        height: 100%;
+      }
+    
   }
 
   #svg-container {

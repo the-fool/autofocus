@@ -44,4 +44,8 @@ export class MapComponent implements OnInit {
         const y = e.clientY / 1080
         this.store.dispatch(PinLocationSet({x, y}))
     }
+
+    logout() {
+        this.af.auth.signOut();
+    }
 }

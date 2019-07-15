@@ -19,6 +19,11 @@ col = db.collection(u'postcards')
 def health():
     return 'healthy'
 
+@app.route('/postcards/<postcard_id>', methods=['DELETE'])
+def postcard(postcard_id):
+    doc = col.document(postcard_id)
+    doc.delete()
+    return '', 204
 
 @app.route('/postcards', methods=['GET', 'POST'])
 def postcards():
