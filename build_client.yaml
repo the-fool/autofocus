@@ -1,0 +1,9 @@
+steps:
+- name: 'gcr.io/cloud-builders/npm'
+  dir: 'client'
+  args: ['install']
+- name: 'gcr.io/cloud-builders/npm'
+  dir: 'client'
+  args: ['run-script', 'ng', '--', 'build', '--prod', '--outputPath', '../build']
+- name: 'gcr.io/cloud-builders/gsutil'
+  args: ['cp', '-r', 'build', 'gs://jmkac.happyhourofcode.com']

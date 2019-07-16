@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postcard-server-deployment
+  labels:
+    app: postcard-server
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: postcard-server
+  template:
+    metadata:
+      labels:
+        app: postcard-server
+    spec:
+      containers:
+      - name: postcard-server
+        image: gcr.io/truble-autofocus-installation/postcard-server
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        env:
+        - name: PORT
+          value: "80"
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 80
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
