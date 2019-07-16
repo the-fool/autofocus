@@ -5,6 +5,7 @@ steps:
 - name: 'gcr.io/cloud-builders/npm:node-10.10.0'
   dir: 'client'
   args: ['run-script', 'build']
-- name: 'gcr.io/cloud-builders/gsutil'
-  dir: 'client'
-  args: ['cp', '-r', 'dist/client', 'gs://jmkac.happyhourofcode.com']
+artifacts:
+  objects:
+    location: 'gs://jmkac.happyhourofcode.com'
+    paths: 'dist/client/*'
