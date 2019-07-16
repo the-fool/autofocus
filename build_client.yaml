@@ -7,4 +7,4 @@ steps:
   args: ['run-script', 'build']
 - name: 'gcr.io/cloud-builders/gsutil'
   dir: 'client'
-  args: ['cp', '-r', 'dist', 'gs://jmkac.happyhourofcode.com']
+  args: ['cp', '-r', 'dist/client', 'gs://jmkac.happyhourofcode.com']
