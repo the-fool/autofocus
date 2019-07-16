@@ -2,7 +2,7 @@ steps:
 - name: 'gcr.io/cloud-builders/npm'
   dir: 'client'
   args: ['install']
-- name: 'gcr.io/cloud-builders/npm:latest'
+- name: 'gcr.io/cloud-builders/npm:node-10.10.0'
   dir: 'client'
   args: ['run-script', 'build']
 - name: 'gcr.io/cloud-builders/gsutil'
