@@ -8,4 +8,4 @@ steps:
 artifacts:
   objects:
     location: 'gs://jmkac.happyhourofcode.com'
-    paths: ['dist/client/*']
+    paths: ['dist/*']
