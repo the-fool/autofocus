@@ -2,9 +2,9 @@ steps:
 - name: 'gcr.io/cloud-builders/npm'
   dir: 'client'
   args: ['install']
-- name: 'gcr.io/cloud-builders/npm'
+- name: 'gcr.io/cloud-builders/npm:10'
   dir: 'client'
   args: ['run-script', 'build']
 - name: 'gcr.io/cloud-builders/gsutil'
   dir: 'client'
-  args: ['cp', '-r', 'build', 'gs://jmkac.happyhourofcode.com']
+  args: ['cp', '-r', 'dist', 'gs://jmkac.happyhourofcode.com']
