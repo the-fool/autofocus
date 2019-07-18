@@ -14,6 +14,8 @@ CORS(app)
 db = firestore.Client()
 col = db.collection(u'postcards')
 
+def clamp(value):
+    return max(min(value, 0.99), 0.01)
 
 @app.route('/health')
 def health():
@@ -43,6 +45,9 @@ def postcards():
         comment = request.form.get('comment', '')
         x = request.form.get('x', 0.5)
         y = request.form.get('y', 0.5)
+        x = clamp(float(x))
+        y = clamp(float(y))
+
         f = request.files.get('file', None)
 
         # process name
