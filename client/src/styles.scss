@@ -7,12 +7,12 @@
 
 @font-face {
   font-family: GothamBold;
-  src: url(assets/fonts/GothamHTF-Bold.otf)
+  src: url(assets/fonts/GothamHTF-Bold.otf);
 }
 
 @font-face {
   font-family: Gotham;
-  src: url(assets/fonts/GothamHTF-Medium.otf)
+  src: url(assets/fonts/GothamHTF-Medium.otf);
 }
 
 /* You can add global styles to this file, and also import other style files */
@@ -31,6 +31,13 @@ body {
 
 body {
   background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 100vh;
+  min-width: 100vw;
+  width: 100%;
 }
 
 svg {
@@ -38,6 +45,6 @@ svg {
     fill: var(--theme);
   }
   .white {
-    fill:var(--white);
+    fill: var(--white);
   }
 }
