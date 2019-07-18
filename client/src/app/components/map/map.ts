@@ -22,7 +22,6 @@ export class MapComponent implements OnInit {
     constructor(private store: Store<State>, private af: AngularFireAuth) { }
 
     ngOnInit() {
-        window['af'] = this.af
         this.authorized = this.af.authState.pipe(
             switchMap(u => u ? u.getIdToken() : of(false)),
             map(token => !!token))
@@ -41,8 +40,8 @@ export class MapComponent implements OnInit {
     }
 
     doPlacePin(e: MouseEvent) {
-        const x = e.clientX / 1920
-        const y = e.clientY / 1080
+        const x = e.offsetX / 1920
+        const y = e.offsetY / 1080
         this.store.dispatch(PinLocationSet({x, y}))
     }
 
