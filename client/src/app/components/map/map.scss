@@ -1,8 +1,8 @@
 $pin-fill: #761d1d;
 
 // hard-coded for the sake of the 
-$full-height: 1080px;
-$full-width: 1920px;
+$full-height: 1920px;
+$full-width: 1080px;
 
 $image-margin: 30px;
 
@@ -24,9 +24,10 @@ $image-margin: 30px;
     position: absolute;
     height: 100%;
     width: 100%;
-    background-image: url('/assets/map.png');
+    background-image: url('/assets/map_tight.png');
     background-position: center;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     transform: scale(1);
   }
 

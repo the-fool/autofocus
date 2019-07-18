@@ -40,8 +40,8 @@ export class MapComponent implements OnInit {
     }
 
     doPlacePin(e: MouseEvent) {
-        const x = e.offsetX / 1920
-        const y = e.offsetY / 1080
+        const x = e.offsetX / 1080
+        const y = e.offsetY / 1920
         this.store.dispatch(PinLocationSet({x, y}))
     }
 
