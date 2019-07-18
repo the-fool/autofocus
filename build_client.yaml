@@ -6,4 +6,4 @@ steps:
   dir: 'client'
   args: ['run-script', 'build']
 - name: 'gcr.io/cloud-builders/gsutil'
-  args: ['cp', '-r', 'client/dist/*', 'gs://autofocus.happyhourofcode.com']
+  args: ['-h', 'Cache-Control:public, max-age=3600', 'cp', '-r', 'client/dist/*', 'gs://autofocus.happyhourofcode.com']
